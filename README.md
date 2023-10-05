@@ -195,7 +195,7 @@ Aqui estão os passos para fazer isso:
 Agora, o seu script `timeseries.py` será executado continuamente como um serviço systemd e será iniciado automaticamente na inicialização do sistema. Certifique-se de ajustar as permissões do arquivo do seu script conforme necessário para garantir que o systemd possa executá-lo.
 
 
-REPETIR O MESMO PROCESSO PARA READDINGS.PY
+# REPETIR O MESMO PROCESSO PARA READINGS.PY
 
 
 
