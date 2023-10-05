@@ -4,12 +4,12 @@ email: lucasmendess96@outlook.com
 
 ## Requisitos: 
 
-Ubuntu 22.04.2 LTS;
-Quad-Core 4GB (8GB recomendado)
-*
-Python3
-pip3
-*
+- Ubuntu 22.04.2 LTS;
+- Quad-Core 4GB (8GB recomendado)
+
+- Python3
+- pip3
+
 ### Instalando Grafana 
 
 Baixar Repositorio
