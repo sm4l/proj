@@ -42,7 +42,7 @@ sudo apt install mariadb-server
 
 ### Baixando o repositório
    ```bash
-git clone https://github.com/sm4l/grafanamqtt.git
+git clone https://github.com/sm4l/proj.git
    ```
 Extraia repositorio na  pasta raiz, /home/seuusuario/
 
