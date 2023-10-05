@@ -77,7 +77,8 @@ Aqui estão os passos para fazer isso:
    Description=Serviço Timeseries
 
    [Service]
-   Type=simple
+   User=SEUUSUARIO
+   Group=SEUGRUPO
    ExecStart=/usr/bin/python3 /home/seuusuario/proj/timeseries.py
    WorkingDirectory=/home/seuusuario/proj
    Restart=on-failure
@@ -116,3 +117,5 @@ Aqui estão os passos para fazer isso:
 
 Agora, o seu script `timeseries.py` será executado continuamente como um serviço systemd e será iniciado automaticamente na inicialização do sistema. Certifique-se de ajustar as permissões do arquivo do seu script conforme necessário para garantir que o systemd possa executá-lo.
 
+
+REPETIR O MESMO PROCESSO PARA READDINGS.PY
