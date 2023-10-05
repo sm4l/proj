@@ -10,42 +10,49 @@ pip3
 ###Instalando Grafana 
 
 Baixar Repositorio
+   ```bash
+
   wget -q -O - https://packages.grafana.com/gpg.key | gpg --dearmor | sudo tee /usr/share/keyrings/grafana.gpg > /dev/null
+```
 
 Adicionar a Lista APT
+   ```bash
 echo "deb [signed-by=/usr/share/keyrings/grafana.gpg] https://packages.grafana.com/oss/deb stable main" | sudo tee -a /etc/apt/sources.list.d/grafana.list
+```
 
 Atualize seu cache APT para atualizar suas listas de pacotes:
-
+   ```bash
 sudo apt update
-
+   ```
 Agora você pode prosseguir com a instalação:
-
+   ```bash
 sudo apt install grafana
-
+```
 Depois que o Grafana estiver instalado, use systemctl para iniciar o servidor Grafana:
+   ```bash
 
 sudo systemctl start grafana-server
-
+```
 
 ### Instalando MariaDB
-
+   ```bash
 sudo apt update
 sudo apt install mariadb-server
-
+   ```
 
 ### Baixando o repositório
-
-https://github.com/sm4l/grafanamqtt.git
-
+   ```bash
+git clone https://github.com/sm4l/grafanamqtt.git
+   ```
 Extraia repositorio na  pasta raiz, /home/seuusuario/
 
 onde o caminho final deve ficar  /home/seuusuario/proj
 
 
 execute o comando para instalar os repositórios necessários para os scripts de gravação.
+   ```bash
 pip3 install -r requirements.txt 
-
+   ```
 
 ### Criando os serviços
 
