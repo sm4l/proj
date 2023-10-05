@@ -1,6 +1,6 @@
 # GRAFANA
-Lucas Augusto Mendes Silva
-email: lucasmendess96@outlook.com
+#### Lucas Augusto Mendes Silva
+#### email: lucasmendess96@outlook.com
 
 ## Requisitos: 
 
