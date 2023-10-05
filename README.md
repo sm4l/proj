@@ -39,6 +39,80 @@ sudo systemctl start grafana-server
 sudo apt update
 sudo apt install mariadb-server
    ```
+### CRIANDO O BANCO DE DADOS
+Abra um terminal e acesse o MariaDB como root:
+
+```bash
+sudo mysql -u root -p
+```
+Em seguida, crie um usuário que pode se conectar de qualquer host:
+
+   ```bash
+CREATE USER 'seu_usuario_mysql'@'%' IDENTIFIED BY 'sua_senha_mysql';
+   ```
+
+Conceda permissões ao usuário para o banco de dados "aeris":
+   ```bash
+GRANT ALL PRIVILEGES ON aeris.* TO 'seu_usuario_mysql'@'%';
+   ```
+
+Certifique-se de que o usuário tenha permissões para acessar o banco de dados "aeris":
+
+Atualize as permissões do MariaDB:
+```bash
+FLUSH PRIVILEGES;
+```
+Saia do MariaDB:
+```bash
+EXIT;
+```
+Reinicie o serviço MariaDB:
+```bash
+sudo service mariadb restart
+```
+
+
+### CRIANDO O BANCO DE DADOS
+Passo 2: Crie o Banco de Dados "aeris"
+No MariaDB, execute o seguinte comando para criar o banco de dados "aeris":
+
+```bash
+CREATE DATABASE aeris;
+```
+Passo 3: Use o Banco de Dados "aeris"
+Execute o seguinte comando para usar o banco de dados "aeris":
+
+```bash
+USE aeris;
+```
+Passo 4: Crie a Tabela "timeseries"
+Execute o seguinte comando para criar a tabela "timeseries":
+
+```bash
+CREATE TABLE timeseries (
+    id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    topic VARCHAR(128) NOT NULL,
+    avg FLOAT,
+    min FLOAT,
+    max FLOAT,
+    cnt INT(11),
+    unit VARCHAR(32),
+    timestamp INT(11)
+);
+```
+Passo 5: Crie a Tabela "readings"
+Execute o seguinte comando para criar a tabela "readings":
+
+```bash
+CREATE TABLE readings (
+    id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    topic VARCHAR(128) NOT NULL,
+    value FLOAT,
+    unit VARCHAR(32),
+    timestamp INT(11)
+);
+```
+Agora você criou o banco de dados "aeris" com as tabelas "timeseries" e "readings" prontas para serem usadas em seu projeto.
 
 ### Baixando o repositório
    ```bash
@@ -119,3 +193,6 @@ Agora, o seu script `timeseries.py` será executado continuamente como um servi�
 
 
 REPETIR O MESMO PROCESSO PARA READDINGS.PY
+
+
+
