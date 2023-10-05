@@ -1,4 +1,4 @@
-# GRAFANA D
+# GRAFANA
 Lucas Augusto Mendes Silva
 email: lucasmendess96@outlook.com
 
