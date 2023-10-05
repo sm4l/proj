@@ -1,4 +1,4 @@
-# grafanamqtt
+# COPYRIGHTS RESERVED FOR LUCAS AUGUSTO MENDES SILVA
 MQTT dashboard project with grafana
 
 
@@ -7,7 +7,7 @@ Ubuntu 22.04.2 LTS
 Python3
 pip3
 
-###Instalando Grafana 
+### Instalando Grafana 
 
 Baixar Repositorio
    ```bash
