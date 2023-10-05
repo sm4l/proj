@@ -1,12 +1,15 @@
-# COPYRIGHTS RESERVED FOR LUCAS AUGUSTO MENDES SILVA
-MQTT dashboard project with grafana
-
+# GRAFANA D
+Lucas Augusto Mendes Silva
+email: lucasmendess96@outlook.com
 
 ## Requisitos: 
-Ubuntu 22.04.2 LTS
+
+Ubuntu 22.04.2 LTS;
+Quad-Core 4GB (8GB recomendado)
+*
 Python3
 pip3
-
+*
 ### Instalando Grafana 
 
 Baixar Repositorio
