@@ -12,14 +12,12 @@
 
 ### Instalando Grafana 
 
-Complete the following steps to install Grafana from the APT repository:
-
-Install the prerequisite packages:
+Instale os pacotes de pré- requisito
 
 ```bash
 sudo apt-get install -y apt-transport-https software-properties-common wget
 ```
-Import the GPG key:
+Importar a GPG key:
 
 ```bash
 sudo mkdir -p /etc/apt/keyrings/
@@ -30,11 +28,10 @@ Adicionar a Lista APT
    ```bash
 echo "deb [signed-by=/usr/share/keyrings/grafana.gpg] https://packages.grafana.com/oss/deb stable main" | sudo tee -a /etc/apt/sources.list.d/grafana.list
 ```
-Baixar Repositorio
+Baixar gpgkey
    ```bash
   wget -q -O - https://packages.grafana.com/gpg.key | gpg --dearmor | sudo tee /usr/share/keyrings/grafana.gpg > /dev/null
 ```
-
 
 
 Atualize seu cache APT para atualizar suas listas de pacotes:
