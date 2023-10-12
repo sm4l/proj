@@ -284,8 +284,7 @@ sudo systemctl enable readings
 Verifique o status dos serviços:
 Você pode verificar o status dos serviços a qualquer momento com os comandos:
 
-```
-bash
+```bash
 sudo systemctl status timeseries
 sudo systemctl status readings
 ```
