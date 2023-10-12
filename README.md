@@ -227,4 +227,4 @@ sudo systemctl status readings
 Os serviços devem ser iniciados e configurados para reiniciar automaticamente em caso de falha. Certifique-se de que o caminho para os arquivos Python esteja correto e que o usuário e grupo sejam definidos corretamente nos arquivos de serviço.
 
 
-
+# IP Grafana: localhost:3000 ou 127.0.0.1:3000 ou seuip:3000
