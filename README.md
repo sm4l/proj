@@ -174,8 +174,8 @@ Aqui estão os passos para fazer isso:
    Description=Serviço Timeseries
 
    [Service]
-   User=SEUUSUARIO
-   Group=SEUGRUPO
+   User=root
+   Group=root
    ExecStart=/usr/bin/python3 /home/proj/timeseries.py
    WorkingDirectory=/home/proj
    Restart=on-failure
@@ -237,9 +237,8 @@ After=network.target
 ExecStart=/usr/bin/python3 /home/proj/timeseries.py
 WorkingDirectory=/home/proj
 Restart=always
-User=seu_usuario
-Group=seu_grupo
-
+User=root
+Group=root
 [Install]
 WantedBy=multi-user.target
 
@@ -261,8 +260,8 @@ After=network.target
 ExecStart=/usr/bin/python3 /home/proj/readings.py
 WorkingDirectory=/home/proj
 Restart=always
-User=seu_usuario
-Group=seu_grupo
+User=root
+Group=root
 
 [Install]
 WantedBy=multi-user.target
