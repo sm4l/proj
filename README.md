@@ -228,3 +228,53 @@ Os serviços devem ser iniciados e configurados para reiniciar automaticamente e
 
 
 # IP Grafana: localhost:3000 ou 127.0.0.1:3000 ou seuip:3000
+
+
+## Bonus
+Now since you are logged in with root , time to make our necessary changes .
+
+IMPORTANT POINT:
+
+— — — — — — — — — — — — — — — — — — — — — — — — — — — — — — Location /usr/share/grafana/public/img contains all the images including our {Favicon , grafana logo , background image,grafana-logo-wordmark} by the names {fav32.png , grafana_icon.svg , heatmap_bg_test.svg,grafana_typelogo.svg } respectively. You can directly drop your own images here and make the login page look yours. But I got a no. of complaints from the users that the changes took place properly in their localhost /server but when a remote user tried to access the same Grafana page, they can’t see these changes happening. So to avoid these bugs follow me in this blog . — — — — — — — — — — — — — — — — — — — — —
+
+HERE WE GO STEP BY STEP :
+First save all your images (Favicon , grafana logo , background image, Logo wordmark ) at a remote location in the cloud , in my case I am saving it on AWS S3 and being public ally accessible .
+Once I saved it on AWS S3 , all my images will generate a unique url to access it anywhere on the internet , please keep all those urls handy .
+Changing Favicon and Title :
+Go to /usr/share/grafana/public/views/index.html and change as stated
+![image](https://github.com/sm4l/proj/assets/86418689/04b3011c-4528-4dfb-82c3-7d6f718a784c)
+
+
+
+Change title by replacing [[.AppTitle]] and Paste your Favicon public url , in my case its aws s3 public url which I pasted here in place of [[.Favicon]] and after the change it looks like
+![image](https://github.com/sm4l/proj/assets/86418689/05756061-65e0-471a-a229-a5b3c147eb2a)
+
+
+Replaced Title by our company name and replcaed favicon by our favicon public url, In our case its aws s3 public url
+So by now our Favicon and Title is successfully changed.
+
+4. Changing Grafana-Logo and Background image :
+
+Go to /usr/share/grafana/public/build/ and search for the file app.****.js
+
+ls|grep app.****.js
+and then search for the keyword “heatmap_bg_test.svg” and “grafana_icon.svg” in this file, whatever places you find this keyword in the file replace the complete “src” & “url” with your own “public url” of your background image and the grafana_icon. The file looks quite messy if you open it with vim editor !
+
+![image](https://github.com/sm4l/proj/assets/86418689/56202153-081e-4392-b243-a701c3af5f0e)
+
+
+grafana_icon.svg might be at several places in this file , dont forget to replace your url at every place
+5. Changing Grafana-Logo-Wordmark :
+
+Go to /usr/share/grafana/public/build/ and search for the file grafana.dark.****.css
+
+ls|grep grafana.dark.****.css
+and then search for the keyword “grafana_typelogo.svg” and replace the complete url by your own aws s3 logo word mark url ! Then restart your docker /server and kaboom ! The customized results looks awesome!
+
+![image](https://github.com/sm4l/proj/assets/86418689/9e28ae99-85c1-43f6-b9b8-dd3187645516)
+
+
+
+Font: https://mohitshrestha02.medium.com/grafana-103-customizing-login-screen-for-grafana-playing-with-white-labels-and-many-more-1d63c23a138c
+
+
