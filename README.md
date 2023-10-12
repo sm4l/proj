@@ -10,7 +10,7 @@
 - Python3
 - pip3
 
-### Instalando Grafana 
+### 1.Instalando Grafana 
 
 Instale os pacotes de pré- requisito
 
@@ -48,12 +48,13 @@ sudo systemctl enable grafana-server
 sudo systemctl start grafana-server
 ```
 
-### Instalando MariaDB
+### 2.Instalando MariaDB
    ```bash
 sudo apt update
 sudo apt install mariadb-server
    ```
-### CRIANDO O BANCO DE DADOS
+
+### 3.CRIANDO O BANCO DE DADOS
 Abra um terminal e acesse o MariaDB como root:
 
 ```bash
@@ -86,7 +87,7 @@ sudo service mariadb restart
 ```
 
 
-### CRIANDO O BANCO DE DADOS
+### 4.CRIANDO O BANCO DE DADOS
 Passo 1: Entre no mysql
 ```bash 
 sudo mysql
@@ -132,7 +133,7 @@ CREATE TABLE readings (
 ```
 Agora você criou o banco de dados "aeris" com as tabelas "timeseries" e "readings" prontas para serem usadas em seu projeto.
 
-### Baixando o repositório
+### 5.Baixando o repositório
 ```bash
 
 cd /home/
@@ -151,7 +152,7 @@ execute o comando para instalar os repositórios necessários para os scripts de
 pip3 install -r requirements.txt 
    ```
 
-## CRIANDO OS SERVIÇOS 
+### 6.CRIANDO OS SERVIÇOS 
 
 Para criar um serviço que execute os programas timeseries.py e readings.py sempre que o sistema é iniciado e os reinicie em caso de falha, você pode usar o systemd, um sistema de inicialização comum em sistemas Linux modernos. Aqui estão os passos para criar um serviço systemd para cada um dos seus programas:
 
