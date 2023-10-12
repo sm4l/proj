@@ -5,7 +5,7 @@ import time
 import datetime
 import sys
 
-sys.stdout = open('/home/noteaeris/proj/logreadings.log', 'a')
+sys.stdout = open('/home/proj/logreadings.log', 'a')
 sys.stderr = sys.stdout
 
 # Configurações do MQTT
