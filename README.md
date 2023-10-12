@@ -133,12 +133,17 @@ CREATE TABLE readings (
 Agora você criou o banco de dados "aeris" com as tabelas "timeseries" e "readings" prontas para serem usadas em seu projeto.
 
 ### Baixando o repositório
+```bash
+
+cd /home/
+```
+
    ```bash
 git clone https://github.com/sm4l/proj.git
    ```
-Extraia repositorio na  pasta raiz, /home/seuusuario/
 
-onde o caminho final deve ficar  /home/seuusuario/proj
+
+onde o caminho final deve ficar  /home/proj
 
 
 execute o comando para instalar os repositórios necessários para os scripts de gravação.
@@ -150,7 +155,7 @@ pip3 install -r requirements.txt
 
 Você deve criar os serviços para que os scripts fiquem rodando de forma constante para isso siga os passos
 
-Vamos criar um serviço systemd chamado `timeseries.service` para executar o script `timeseries.py` localizado na pasta `/home/seuusuario/proj`. 
+Vamos criar um serviço systemd chamado `timeseries.service` para executar o script `timeseries.py` localizado na pasta `/home/proj`. 
 
 Aqui estão os passos para fazer isso:
 
@@ -171,8 +176,8 @@ Aqui estão os passos para fazer isso:
    [Service]
    User=SEUUSUARIO
    Group=SEUGRUPO
-   ExecStart=/usr/bin/python3 /home/seuusuario/proj/timeseries.py
-   WorkingDirectory=/home/seuusuario/proj
+   ExecStart=/usr/bin/python3 /home/proj/timeseries.py
+   WorkingDirectory=/home/proj
    Restart=on-failure
    RestartSec=30
 
@@ -248,7 +253,6 @@ d. Crie um arquivo de serviço semelhante para o readings.py:
 sudo nano /etc/systemd/system/readings.service
 ```
 ```bash
-Copy code
 [Unit]
 Description=Readings Program
 After=network.target
