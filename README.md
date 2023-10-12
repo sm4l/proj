@@ -90,6 +90,10 @@ sudo service mariadb restart
 
 
 ### CRIANDO O BANCO DE DADOS
+Passo 1: Entre no mysql
+```bash 
+sudo mysql
+```
 Passo 2: Crie o Banco de Dados "aeris"
 No MariaDB, execute o seguinte comando para criar o banco de dados "aeris":
 
