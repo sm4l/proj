@@ -212,5 +212,82 @@ Agora, o seu script `timeseries.py` será executado continuamente como um servi�
 
 # REPETIR O MESMO PROCESSO PARA READINGS.PY
 
+## CRIANDO OS SERVIÇOS 
+
+Para criar um serviço que execute os programas timeseries.py e readings.py sempre que o sistema é iniciado e os reinicie em caso de falha, você pode usar o systemd, um sistema de inicialização comum em sistemas Linux modernos. Aqui estão os passos para criar um serviço systemd para cada um dos seus programas:
+
+Crie os serviços systemd:
+
+bash
+sudo nano /etc/systemd/system/timeseries.service
+
+b. No arquivo de serviço, adicione o seguinte conteúdo (substitua /caminho/para/timeseries.py pelo caminho absoluto para o arquivo timeseries.py):
+
+```bash
+[Unit]
+Description=Timeseries Program
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/python3 /home/proj/timeseries.py
+WorkingDirectory=/home/proj
+Restart=always
+User=seu_usuario
+Group=seu_grupo
+
+[Install]
+WantedBy=multi-user.target
+
+```
+Também, substitua seu_usuario e seu_grupo pelo seu nome de usuário e grupo.
+c. Salve o arquivo e saia do editor.
+
+d. Crie um arquivo de serviço semelhante para o readings.py:
+
+```bash
+sudo nano /etc/systemd/system/readings.service
+```
+```bash
+Copy code
+[Unit]
+Description=Readings Program
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/python3 /home/proj/readings.py
+WorkingDirectory=/home/proj
+Restart=always
+User=seu_usuario
+Group=seu_grupo
+
+[Install]
+WantedBy=multi-user.target
+```
+Recarregue o systemd:
+
+```bash
+
+sudo systemctl daemon-reload
+```
+Inicie e habilite os serviços:
+
+```bash
+sudo systemctl start timeseries
+sudo systemctl enable timeseries
+sudo systemctl start readings
+sudo systemctl enable readings
+```
+
+Verifique o status dos serviços:
+Você pode verificar o status dos serviços a qualquer momento com os comandos:
+
+```
+bash
+sudo systemctl status timeseries
+sudo systemctl status readings
+```
+
+Os serviços devem ser iniciados e configurados para reiniciar automaticamente em caso de falha. Certifique-se de que o caminho para os arquivos Python esteja correto e que o usuário e grupo sejam definidos corretamente nos arquivos de serviço.
+
 
 
