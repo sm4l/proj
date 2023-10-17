@@ -158,9 +158,9 @@ Para criar um serviço que execute os programas timeseries.py e readings.py semp
 
 Crie os serviços systemd:
 
-bash
+```bash
 sudo nano /etc/systemd/system/timeseries.service
-
+```
 b. No arquivo de serviço, adicione o seguinte conteúdo (substitua /caminho/para/timeseries.py pelo caminho absoluto para o arquivo timeseries.py):
 
 ```bash
