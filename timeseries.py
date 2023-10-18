@@ -1,24 +1,6 @@
 import mysql.connector
 import time
 import datetime
-import sys
-import logging
-import logging
-import sys
-
-# Configurar o logger para escrever em um arquivo de log
-logging.basicConfig(filename='log.txt', level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
-
-# Criar um manipulador para direcionar a saída para o console
-console_handler = logging.StreamHandler(sys.stdout)
-console_handler.setLevel(logging.INFO)  # Definir o nível de severidade desejado para a saída no console
-
-# Adicionar o manipulador ao logger raiz
-logger = logging.getLogger()
-logger.addHandler(console_handler)
-
-#sys.stdout = open('/home/noteaeris/proj/logts.log', 'a')
-#sys.stderr = sys.stdout
 
 # Configurações do banco de dados MySQL
 db_host = "localhost"  # Altere para o host do seu banco de dados MySQL
@@ -81,9 +63,8 @@ def escrever_dados_no_banco(dados_por_topico):
         
         # Verificar se já existem registros para o último minuto
         if ultimo_minuto_registrado is not None and ultimo_minuto_registrado >= minuto_inteiro:
-            time.sleep(30)
-            print(f"{hora} Já existem registros para o minuto {minuto_inteiro}. Dados não serão duplicados.")
-            logger.debug(f"Já existem registros para o minuto {minuto_inteiro}. Dados não serão duplicados.")
+            #time.sleep(60)
+            print(f"Já existem registros para o minuto {minuto_inteiro}. Dados não serão duplicados.")
             continue
         
         cursor = connection.cursor()
@@ -95,6 +76,7 @@ def escrever_dados_no_banco(dados_por_topico):
         query = "INSERT INTO {} (avg, min, max, cnt, topic, unit, timestamp) VALUES (%s, %s, %s, %s, %s, %s, %s)".format(timeseries_table_name)
         values = (media, min(data['valores']), max(data['valores']), count, topic, data['unit'], minuto_inteiro)
         cursor.execute(query, values)
+
         cursor.close()
 
     # Confirmar as alterações no banco de dados
@@ -102,33 +84,25 @@ def escrever_dados_no_banco(dados_por_topico):
 
     # Fechar a conexão com o banco de dados
     connection.close()
-    print(str(hora) + " >>>>INSERIDO COM SUCESSO<<<<")
-    logger.debug(">>>INSERT OK<<<<")
-
 
 if __name__ == "__main__":
     # Definir o intervalo de tempo para o loop (por exemplo, a cada minuto)
     intervalo_minuto = 60
-    last_logged_minute = None  # Variável para controlar o último minuto registrado
- 
-
 
     while True:
-        try:
-            ultimo_minuto = int(time.time()) - (int(time.time()) % intervalo_minuto)
-            unixt = datetime.datetime.now()
-            hora = unixt.strftime('%Y-%m-%d %H:%M:%S')
-            print(str(hora) + " Iniciando Ciclo")
-            logger.debug("Iniciando Ciclo")
+        # Obter o timestamp do último minuto
+        ultimo_minuto = int(time.time()) - (int(time.time()) % intervalo_minuto)
+        #obetendo hora atual
+        unixt= datetime.datetime.now()
+        hora=unixt.strftime('%Y-%m-%d %H:%M:%S')
 
-            if ultimo_minuto != last_logged_minute:  # Verifique se há novos dados a serem processados
-                dados_por_topico = ler_dados_do_banco(ultimo_minuto)
-                escrever_dados_no_banco(dados_por_topico)
-                last_logged_minute = ultimo_minuto
+        # Ler os dados da tabela readings relativos ao último minuto
+        dados_por_topico = ler_dados_do_banco(ultimo_minuto)
 
-            time.sleep(intervalo_minuto)
-        except Exception as e:
-            # Em caso de erro, registre as informações no log
-            error_message = f"Erro: {str(e)}"
-            print(error_message)
-            logger.error(error_message)
+        # Calcular as médias por minuto e escrever os dados na tabela timeseries
+        escrever_dados_no_banco(dados_por_topico)
+
+        print(str(hora)+" timeseries.py Calculo e Escrita OK .")
+
+        # Esperar até o próximo ciclo (próximo minuto)
+        time.sleep(intervalo_minuto)
