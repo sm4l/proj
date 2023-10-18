@@ -47,7 +47,7 @@ def verificar_e_inserir_dados(connection, topic, minuto_inteiro, data):
         cursor.execute(query, values)
         cursor.close()
         connection.commit()
-        print(f"{hora} >>>>INSERIDO COM SUCESSO<<<<")
+        #print(f"{hora} >>>>INSERIDO COM SUCESSO<<<<")
         logger.debug(">>>INSERT OK<<<")
     else:
         print(f"{hora} Já existem registros para o minuto {minuto_inteiro}. Dados não serão duplicados.")
